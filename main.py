@@ -17,7 +17,8 @@ import os
 import numpy as np
 
 from reactor_ss import integrate, _FLOOR
-from validate import check_equilibrium, temperature_sweep
+from validate import (check_equilibrium, temperature_sweep,
+                      check_nonisothermal_limit, axial_profile, turndown_scan)
 
 
 def main():
@@ -40,6 +41,15 @@ def main():
     temperature_sweep(
         P=50.0, W_cat=30.0,
         save_path=os.path.join(results_dir, "01_temperature_sweep.png"),
+    )
+
+    # --- Non-isothermal reactor: energy balance, hotspot, turndown ---------
+    check_nonisothermal_limit()
+    axial_profile(
+        save_path=os.path.join(results_dir, "02_axial_hotspot.png"),
+    )
+    turndown_scan(
+        save_path=os.path.join(results_dir, "03_turndown.png"),
     )
 
 

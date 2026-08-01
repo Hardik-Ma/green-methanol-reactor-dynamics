@@ -27,6 +27,18 @@ import numpy as np
 DH_MEOH = -49.0e3   # CO2 + 3 H2 -> CH3OH + H2O
 DH_RWGS = +41.0e3   # CO2 +   H2 -> CO    + H2O
 
+# --- Molar heat capacities (J/mol/K). ---------------------------------------
+# Representative constant values near 500 K, keyed by species. Adequate for a
+# first non-isothermal model; replace with T-dependent (Shomate/NASA) cp before
+# any quantitative hotspot claim. Keys match kinetics.SPECIES.
+CP = {
+    "CO2":   45.0,
+    "H2":    29.3,
+    "CH3OH": 55.0,
+    "H2O":   35.2,
+    "CO":    30.0,
+}
+
 
 def K_eq1(T):
     """Methanol-reaction equilibrium constant K1* [bar^-2]. T in K."""
